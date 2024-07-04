@@ -1,0 +1,90 @@
+{
+	"features": [
+		"ldr"
+	],
+	"filter": "RT",
+	"preproc_dir": "preproc",
+	"train_data": "train-vid",
+	"transfer": "srgb",
+	"valid_data": "validate-vid",
+	"results_dir": "results",
+	"result": "noof-ultraminiv12",
+	"checkpoint": 0,
+	"config": "config/train_temporal_wnet_ultramini.json",
+	"epochs": 300,
+	"valid_epochs": 10,
+	"save_epochs": 5,
+	"lr": 2e-06,
+	"max_lr": 0.0002,
+	"lr_cycle_epochs": 250,
+	"precision": "fp32",
+	"batch_size": 1,
+	"loaders": 4,
+	"model": "temporal_wnet",
+	"loss": "l1_msssim",
+	"tile_size": 256,
+	"seed": null,
+	"temp_size": 16,
+	"device": "cuda",
+	"device_id": 0,
+	"num_devices": 1,
+	"deterministic": false,
+	"spatial_loss": "l1_msssim",
+	"temporal_loss": "l1",
+	"train_config": {
+		"optimizer": "ranger",
+		"weight_decay": 0.01,
+		"schedule": "cos_annealing",
+		"start_epoch": 0,
+		"end_epoch": 300,
+		"steps": 300,
+		"lr": 0.005,
+		"final_lr": 1e-08
+	},
+	"model_config": {
+		"use_bn": false,
+		"activation": "relu",
+		"leaky_slope": 0.1,
+		"init": "default",
+		"fe_model": "UNet",
+		"quantize": false,
+		"num_bits": 8,
+		"denselayer": false,
+		"denselayer_size": 32,
+		"feature_size": 8,
+		"num_kernels": 3,
+		"num_taps": 13,
+		"encoder_stages": [
+			[
+				4,
+				2
+			],
+			[
+				8,
+				2
+			],
+			[
+				16,
+				2
+			],
+			[
+				32,
+				2
+			]
+		],
+		"decoder_stages": [
+			[
+				4,
+				2
+			],
+			[
+				8,
+				2
+			],
+			[
+				16,
+				2
+			]
+		]
+	}
+}

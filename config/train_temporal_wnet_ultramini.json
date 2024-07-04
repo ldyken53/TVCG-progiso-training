@@ -1,0 +1,51 @@
+{
+    "model": "temporal_wnet",
+    "num_devices": 1,
+    "batch_size": 1,
+    "epochs": 300,
+    "spatial_loss": "l1_msssim",
+    "temporal_loss": "l1",
+    "temp_size": 16,
+    "precision": "fp32",
+
+    "train_config": {
+      "optimizer": "ranger",
+      "weight_decay": 1e-2,
+      "schedule": "cos_annealing",
+      "start_epoch": 0,
+      "end_epoch": 300,
+      "steps": 300,
+      "lr": 0.005,
+      "final_lr": 0.00000001
+    },
+
+    "model_config": {
+      "use_bn": false,
+      "activation": "relu",
+      "leaky_slope": 0.1,
+      "init": "default",
+      "fe_model": "UNet",
+      "quantize": false,
+      "num_bits": 8,
+      "denselayer": false,
+      "denselayer_size": 32,
+      "feature_size": 8,
+      "num_kernels": 3,
+      "num_taps": 13,
+      "encoder_stages": [
+        [ 4, 2 ],
+        [ 8, 2],
+        [ 16, 2],
+        [ 32, 2]
+      ],
+  
+      "decoder_stages": [
+        [ 4, 2 ],
+        [ 8, 2],
+        [ 16, 2]
+      ]
+    }
+  }
+  
+  
+  
