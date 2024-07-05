@@ -154,7 +154,7 @@ def main():
 
   # Saves an image in different formats
   def save_images(path, images, images_srgb):
-    for t in range(cfg.temp_size - 1, cfg.temp_size):
+    for t in range(cfg.temp_size):
       image = images[:, t, ...]
       image_srgb = images_srgb[:, t, ...]
       image      = tensor_to_image(image)
